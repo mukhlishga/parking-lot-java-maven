@@ -19,8 +19,18 @@ Please see the Problem Statement for context onboarding
    ```
    ./bin/parking_lot
    ```
-
-3. Run program with file input
+   Available commands:
+   ```
+   create_parking_lot <number_of_available_slots>
+   park <registration_number> <colour>
+   leave <slot_index>
+   status
+   registration_numbers_for_cars_with_colour <colour>
+   slot_numbers_for_cars_with_colour <colour>
+   slot_number_for_registration_number <registration_number>
+   exit
+   ```
+4. Run program with file input
    ```
    ./bin/parking_lot inputFile.txt
    ```
