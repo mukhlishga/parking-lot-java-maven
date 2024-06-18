@@ -12,11 +12,11 @@ public class ParkingSpot {
     }
 
     public Integer getIndex() {
-        return this.index + 1;
+        return index + 1;
     }
 
     public String getRegistrationNumber() {
-        return this.registrationNumber;
+        return registrationNumber;
     }
 
     public String getColour() {

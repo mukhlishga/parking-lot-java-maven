@@ -18,22 +18,22 @@ public class ParkingLot {
     }
 
     public List<ParkingSpot> getParkingSpots() {
-        return this.parkingSpots;
+        return parkingSpots;
     }
 
     public void park(String registrationNumber, String colour) {
         getAvailableSlotIndex();
-        if (this.availableSlotIndex >= maximumSpot) {
+        if (availableSlotIndex >= maximumSpot) {
             System.out.println("Sorry, parking lot is full");
         } else {
-            ParkingSpot parkingSpot = new ParkingSpot(this.availableSlotIndex, registrationNumber, colour);
-            this.parkingSpots.add(parkingSpot);
+            ParkingSpot parkingSpot = new ParkingSpot(availableSlotIndex, registrationNumber, colour);
+            parkingSpots.add(parkingSpot);
             System.out.println("Allocated slot number: " + parkingSpot.getIndex());
         }
     }
 
     public void getStatus() {
-        List<ParkingSpot> listOfOrderedParkingSpots = this.parkingSpots.stream()
+        List<ParkingSpot> listOfOrderedParkingSpots = parkingSpots.stream()
             .sorted(Comparator.comparing(ParkingSpot::getIndex))
             .collect(Collectors.toList());
 
@@ -47,12 +47,12 @@ public class ParkingLot {
     }
 
     public void leave(Integer index) {
-        this.parkingSpots.removeIf( obj -> Objects.equals(obj.getIndex(), index));
+        parkingSpots.removeIf( obj -> Objects.equals(obj.getIndex(), index));
         System.out.println("Slot number " + index + " is free");
     }
 
     public String getRegistrationNumbersForCarsWithColour(String colour) {
-        return  this.parkingSpots.stream()
+        return parkingSpots.stream()
             .filter(o -> Objects.equals(o.getColour(), colour))
             .sorted(Comparator.comparing(ParkingSpot::getIndex))
             .map(ParkingSpot::getRegistrationNumber)
@@ -61,7 +61,7 @@ public class ParkingLot {
     }
 
     public String getSlotNumbersForCarsWithColour(String colour) {
-        return  this.parkingSpots.stream()
+        return parkingSpots.stream()
             .filter(o -> Objects.equals(o.getColour(), colour))
             .sorted(Comparator.comparing(ParkingSpot::getIndex))
             .map(ParkingSpot::getIndex)
@@ -70,7 +70,7 @@ public class ParkingLot {
     }
 
     public String getSlotNumberForRegistrationNumber(String registrationNumber) {
-        return  this.parkingSpots.stream()
+        return parkingSpots.stream()
             .filter(o -> Objects.equals(o.getRegistrationNumber(), registrationNumber))
             .map(ParkingSpot::getIndex)
             .map(Object::toString)
@@ -79,7 +79,7 @@ public class ParkingLot {
     }
 
     public void getAvailableSlotIndex() {
-        List<Integer> listOfRegisteredIndex = this.parkingSpots.stream()
+        List<Integer> listOfRegisteredIndex = parkingSpots.stream()
             .map(ParkingSpot::getIndex)
             .sorted()
             .collect(Collectors.toList());
@@ -94,6 +94,6 @@ public class ParkingLot {
             }
         }
 
-        this.availableSlotIndex = freeIndex;
+        availableSlotIndex = freeIndex;
     }
 }

@@ -15,7 +15,7 @@ public class InputParser {
         String[] inputs = input.split(" ");
         switch (inputs.length) {
             case 1:
-                if (this.parkingLot == null) {
+                if (parkingLot == null) {
                     System.out.println("Please create a parking lot first");
                 } else if (input.equals("status")) {
                     parkingLot.getStatus();
@@ -23,14 +23,14 @@ public class InputParser {
                 break;
             case 2:
                 if (Objects.equals(inputs[0], "create_parking_lot")) {
-                    if (this.parkingLot == null) {
-                        this.parkingLot = new ParkingLot(Integer.valueOf(inputs[1]));
+                    if (parkingLot == null) {
+                        parkingLot = new ParkingLot(Integer.valueOf(inputs[1]));
                         System.out.println("Created a parking lot with " + Integer.valueOf(inputs[1]) + " slots");
                     } else {
                         System.out.println("Parking lot already exists");
                     }
                 } else {
-                    if (this.parkingLot == null) {
+                    if (parkingLot == null) {
                         System.out.println("Please create a parking lot first");
                     } else {
                         if (Objects.equals(inputs[0], "leave")) {
@@ -46,7 +46,7 @@ public class InputParser {
                 }
                 break;
             case 3:
-                if (this.parkingLot == null) {
+                if (parkingLot == null) {
                     System.out.println("Please create a parking lot first");
                 } else if (Objects.equals(inputs[0], "park")) {
                     parkingLot.park(inputs[1], inputs[2]);
