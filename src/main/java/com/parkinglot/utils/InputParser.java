@@ -3,7 +3,6 @@ package com.parkinglot.utils;
 import com.parkinglot.services.ParkingLot;
 
 import java.io.*;
-import java.util.Objects;
 
 public class InputParser {
     private ParkingLot parkingLot = null;
@@ -11,18 +10,36 @@ public class InputParser {
     public InputParser() {
     }
 
+    public void parseCliInput() {
+        while (true) {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+                String inputString = bufferedReader.readLine();
+                if (inputString.equalsIgnoreCase("exit")) {
+                    break;
+                } else if (!inputString.isEmpty()) {
+                    parseInput(inputString.trim());
+                }
+            } catch (IOException e) {
+                System.out.println("Error when reading CLI input");
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void parseInput(String input) {
         String[] inputs = input.split(" ");
+
         switch (inputs.length) {
             case 1:
                 if (parkingLot == null) {
                     System.out.println("Please create a parking lot first");
-                } else if (input.equals("status")) {
+                } else if (inputs[0].equalsIgnoreCase("status")) {
                     parkingLot.getStatus();
                 }
                 break;
             case 2:
-                if (Objects.equals(inputs[0], "create_parking_lot")) {
+                if (inputs[0].equalsIgnoreCase("create_parking_lot")) {
                     if (parkingLot == null) {
                         parkingLot = new ParkingLot(Integer.valueOf(inputs[1]));
                         System.out.println("Created a parking lot with " + Integer.valueOf(inputs[1]) + " slots");
@@ -33,14 +50,19 @@ public class InputParser {
                     if (parkingLot == null) {
                         System.out.println("Please create a parking lot first");
                     } else {
-                        if (Objects.equals(inputs[0], "leave")) {
-                            parkingLot.leave(Integer.valueOf(inputs[1]));
-                        } else if (Objects.equals(inputs[0], "registration_numbers_for_cars_with_colour")) {
-                            System.out.println(parkingLot.getRegistrationNumbersForCarsWithColour(inputs[1]));
-                        } else if (Objects.equals(inputs[0], "slot_numbers_for_cars_with_colour")) {
-                            System.out.println(parkingLot.getSlotNumbersForCarsWithColour(inputs[1]));
-                        } else if (Objects.equals(inputs[0], "slot_number_for_registration_number")) {
-                            System.out.println(parkingLot.getSlotNumberForRegistrationNumber(inputs[1]));
+                        switch (inputs[0]) {
+                            case "leave":
+                                parkingLot.leave(Integer.valueOf(inputs[1]));
+                                break;
+                            case "registration_numbers_for_cars_with_colour":
+                                System.out.println(parkingLot.getRegistrationNumbersForCarsWithColour(inputs[1]));
+                                break;
+                            case "slot_numbers_for_cars_with_colour":
+                                System.out.println(parkingLot.getSlotNumbersForCarsWithColour(inputs[1]));
+                                break;
+                            case "slot_number_for_registration_number":
+                                System.out.println(parkingLot.getSlotNumberForRegistrationNumber(inputs[1]));
+                                break;
                         }
                     }
                 }
@@ -48,7 +70,7 @@ public class InputParser {
             case 3:
                 if (parkingLot == null) {
                     System.out.println("Please create a parking lot first");
-                } else if (Objects.equals(inputs[0], "park")) {
+                } else if (inputs[0].equalsIgnoreCase("park")) {
                     parkingLot.park(inputs[1], inputs[2]);
                 }
                 break;
@@ -59,6 +81,7 @@ public class InputParser {
 
     public void parseFileInput(String filepath) {
         File inputFile = new File(filepath);
+
         try {
             BufferedReader br = new BufferedReader(new FileReader((inputFile)));
             String line;
