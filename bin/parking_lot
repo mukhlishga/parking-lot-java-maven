@@ -1,2 +1,4 @@
+#!/bin/bash
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-java -cp $DIR/../target/parking_lot_java_maven-1.0-SNAPSHOT.jar Main $1
+java -cp $DIR/../target/parking_lot_java_maven-1.0-SNAPSHOT.jar com.parkinglot.Main $1

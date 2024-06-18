@@ -1,6 +1,6 @@
-package services;
+package com.parkinglot.services;
 
-import contracts.ParkingSpot;
+import com.parkinglot.contracts.ParkingSpot;
 
 import java.util.ArrayList;
 import java.util.Comparator;

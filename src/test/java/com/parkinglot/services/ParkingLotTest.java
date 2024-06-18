@@ -1,9 +1,9 @@
-package services;
+package com.parkinglot.services;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParkingLotTest {
     public static final Integer MAXIMUM_SPOT = 3;

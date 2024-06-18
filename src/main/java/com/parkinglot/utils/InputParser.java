@@ -1,6 +1,6 @@
-package utils;
+package com.parkinglot.utils;
 
-import services.ParkingLot;
+import com.parkinglot.services.ParkingLot;
 
 import java.io.*;
 import java.util.Objects;

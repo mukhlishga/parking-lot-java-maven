@@ -1,4 +1,6 @@
-import utils.InputParser;
+package com.parkinglot;
+
+import com.parkinglot.utils.InputParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;

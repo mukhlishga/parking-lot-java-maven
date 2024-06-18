@@ -15,7 +15,12 @@ Please see the Problem Statement for context onboarding
    ./bin/setup
    ```
 
-2. Run program in interactive CLI
+2. Run test
+   ```
+   ./bin/run_functional_tests
+   ```
+
+3. Run program in interactive CLI
    ```
    ./bin/parking_lot
    ```

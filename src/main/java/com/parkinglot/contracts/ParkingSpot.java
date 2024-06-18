@@ -1,4 +1,4 @@
-package contracts;
+package com.parkinglot.contracts;
 
 public class ParkingSpot {
     private final Integer index;
